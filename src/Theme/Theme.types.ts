@@ -5,10 +5,10 @@ import { TSectionData } from '../Section/Section.types'
 
 export type TMakasiTheme = {
   PageWrapper?: React.FC
-  PrePageComponent?: (props: TMakasiPageThemeProps) => JSX.Element
-  PostPageComponent?: (props: TMakasiPageThemeProps) => JSX.Element
-  PreSectionComponent?: (props: TMakasiSectionThemeProps) => JSX.Element
-  PostSectionComponent?: (props: TMakasiSectionThemeProps) => JSX.Element
+  PrePageComponent?: (props: TMakasiPageThemeProps) => JSX.Element | null
+  PostPageComponent?: (props: TMakasiPageThemeProps) => JSX.Element | null
+  PreSectionComponent?: (props: TMakasiSectionThemeProps) => JSX.Element | null
+  PostSectionComponent?: (props: TMakasiSectionThemeProps) => JSX.Element | null
 }
 
 export type TMakasiPageThemeProps = {

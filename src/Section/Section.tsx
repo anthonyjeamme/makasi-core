@@ -4,7 +4,7 @@ import { SectionContextProvider } from './Section.context'
 import { TSectionComponent } from './Section.types'
 import { getSectionDefinition } from './Section.utils'
 
-export const Section: TSectionComponent = ({ section }) => {
+export const Section: TSectionComponent = ({ section, theme, index, data }) => {
   const pageContext = usePageContext()
 
   const sectionDefinition = getSectionDefinition(
@@ -26,7 +26,22 @@ export const Section: TSectionComponent = ({ section }) => {
 
   return (
     <SectionContextProvider section={section}>
+      {theme?.PreSectionComponent && (
+        <theme.PreSectionComponent
+          index={index}
+          section={section}
+          data={data}
+        />
+      )}
       <sectionDefinition.Component {...section} />
+
+      {theme?.PostSectionComponent && (
+        <theme.PostSectionComponent
+          index={index}
+          section={section}
+          data={data}
+        />
+      )}
     </SectionContextProvider>
   )
 }

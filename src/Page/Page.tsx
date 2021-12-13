@@ -29,25 +29,13 @@ export const PageContent = ({
         )}
 
         {data.sections.map((section, index) => (
-          <section key={section.id} style={{ position: 'relative' }}>
-            {theme?.PreSectionComponent && (
-              <theme.PreSectionComponent
-                index={index}
-                section={section}
-                data={data}
-              />
-            )}
-
-            <Section section={section} />
-
-            {theme?.PostSectionComponent && (
-              <theme.PostSectionComponent
-                index={index}
-                section={section}
-                data={data}
-              />
-            )}
-          </section>
+          <Section
+            key={section.id}
+            section={section}
+            theme={theme}
+            index={index}
+            data={data}
+          />
         ))}
 
         {theme?.PostPageComponent && (
@@ -64,6 +52,7 @@ export const page =
     const [data, setData] = useState(null)
 
     useEffect(() => {
+      // @ts-ignore
       dataConnector.getData().then((data) => {
         setData(data || pageSchema.defaultData)
       })

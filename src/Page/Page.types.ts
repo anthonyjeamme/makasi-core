@@ -1,4 +1,4 @@
-import { TSectionData } from '../Section/Section.types'
+import { TSectionData, TSectionDefinition } from '../Section/Section.types'
 
 export type TPageSchema = {
   defaultData: TPageData
@@ -27,6 +27,8 @@ export type TPageContext = {
   getSectionData: (sectionId: string) => TSectionData
   updateSectionData: (sectionId: string, data: TSectionData) => void
   refresh: () => void
+
+  getSectionDefinition: (type: string) => TSectionDefinition
 
   addSection: (index: number, sectionData: TSectionData) => void
   removeSection: (sectionId: string) => void

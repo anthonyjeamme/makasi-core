@@ -1,3 +1,5 @@
+import { TMakasiTheme, TPageData } from '~'
+
 export type TSectionData<TParams = any, TData = any> = {
   id: string
   type: string
@@ -7,6 +9,9 @@ export type TSectionData<TParams = any, TData = any> = {
 
 export type TSectionComponent = (props: {
   section: TSectionData
+  theme: TMakasiTheme
+  index: number
+  data: TPageData
 }) => JSX.Element
 
 export type TSectionContext = {
@@ -15,6 +20,7 @@ export type TSectionContext = {
   getParam: (fieldName: string) => any
   updateParam: (fieldName: string, data: any) => any
   refresh: () => void
+  setIsFocused: (isFocused: boolean) => void
 }
 
 export type TSectionDefinition = {

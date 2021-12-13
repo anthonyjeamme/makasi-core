@@ -29,7 +29,15 @@ export const PageContextProvider = ({ pageSchema, pageData, children }) => {
 
     if (indexOfSection === -1) return
 
-    pageDataRef.current.sections[indexOfSection] = data
+    pageDataRef.current.sections[indexOfSection] = {
+      ...pageDataRef.current.sections[indexOfSection],
+      ...data
+    }
+  }
+
+  const getSectionDefinition = (type: string) => {
+    console.log('look for', type)
+    return pageSchema.sections.find((section) => section.type === type)
   }
 
   const addSection = (index: number, sectionData: TSectionData) => {
@@ -61,6 +69,7 @@ export const PageContextProvider = ({ pageSchema, pageData, children }) => {
         editionEnabled,
         setEditionEnabled,
         pageSchema,
+        getSectionDefinition,
         getSectionData,
         updateSectionData,
         toJSON
