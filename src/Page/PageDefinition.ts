@@ -1,5 +1,12 @@
+import { TPageData } from './Page.types'
+
 export class PageDefinition {
-  constructor() {
-    //
+  sections: any[]
+  defaultData: TPageData
+
+  // TODO sections: TSectionDefinition[]
+  constructor(sections: any[], defaultData: TPageData) {
+    this.sections = sections
+    this.defaultData = defaultData
   }
 }

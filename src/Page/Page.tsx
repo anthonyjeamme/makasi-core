@@ -1,42 +1,34 @@
 import React, { useEffect, useState } from 'react'
 
 import { PageContextProvider } from './Page.context'
-import { TPageSchema } from './Page.types'
-import { TConnector } from '../Connector/Connector.types'
-import { TMakasiTheme } from '~'
 import { PageContent } from './PageContent'
 
-export const page =
-  (
-    pageSchema: TPageSchema,
-    dataConnector: TConnector,
-    theme: TMakasiTheme,
-    pageId: string
-  ) =>
-  () => {
-    const [data, setData] = useState(null)
+import { PageDefinition } from './PageDefinition'
 
-    useEffect(() => {
-      dataConnector.getPage(pageId).then((data) => {
-        setData(data || pageSchema.defaultData)
-      })
-    }, [])
+export const page = (pageDefinition: PageDefinition, pageId: string) => () => {
+  const [data, setData] = useState(null)
 
-    if (data === null) return null
+  useEffect(() => {
+    window.__makasi.connector.getPage(pageId).then((data) => {
+      setData(data || pageDefinition.defaultData)
+    })
+  }, [])
 
-    return (
-      <PageContextProvider
-        pageSchema={pageSchema}
-        pageData={data}
-        pageId={pageId}
-      >
-        {(pageData) => (
-          <PageContent
-            data={pageData}
-            dataConnector={dataConnector}
-            theme={theme}
-          />
-        )}
-      </PageContextProvider>
-    )
-  }
+  if (data === null) return null
+
+  return (
+    <PageContextProvider
+      pageSchema={pageDefinition}
+      pageData={data}
+      pageId={pageId}
+    >
+      {(pageData) => (
+        <PageContent
+          data={pageData}
+          dataConnector={window.__makasi.connector}
+          theme={window.__makasi.adminTheme}
+        />
+      )}
+    </PageContextProvider>
+  )
+}
