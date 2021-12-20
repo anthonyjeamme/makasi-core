@@ -47,13 +47,17 @@ export const PageContent = ({
 }
 
 export const page =
-  (pageSchema: TPageSchema, dataConnector: TConnector, theme: TMakasiTheme) =>
+  (
+    pageSchema: TPageSchema,
+    dataConnector: TConnector,
+    theme: TMakasiTheme,
+    pageId: string
+  ) =>
   () => {
     const [data, setData] = useState(null)
 
     useEffect(() => {
-      // @ts-ignore
-      dataConnector.getData().then((data) => {
+      dataConnector.getPage(pageId).then((data) => {
         setData(data || pageSchema.defaultData)
       })
     }, [])
@@ -61,7 +65,11 @@ export const page =
     if (data === null) return null
 
     return (
-      <PageContextProvider pageSchema={pageSchema} pageData={data}>
+      <PageContextProvider
+        pageSchema={pageSchema}
+        pageData={data}
+        pageId={pageId}
+      >
         {(pageData) => (
           <PageContent
             data={pageData}

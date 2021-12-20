@@ -14,7 +14,12 @@ const pageContext = React.createContext<TPageContext>(initPageContextData)
 
 export const usePageContext = () => React.useContext<TPageContext>(pageContext)
 
-export const PageContextProvider = ({ pageSchema, pageData, children }) => {
+export const PageContextProvider = ({
+  pageSchema,
+  pageData,
+  children,
+  pageId
+}) => {
   const pageDataRef = React.useRef<TPageData>(pageData)
   const [editionEnabled, setEditionEnabled] = useState<boolean>(false)
   const [refresh] = useRefresh()
@@ -62,6 +67,7 @@ export const PageContextProvider = ({ pageSchema, pageData, children }) => {
   return (
     <pageContext.Provider
       value={{
+        pageId,
         refresh,
         addSection,
         removeSection,

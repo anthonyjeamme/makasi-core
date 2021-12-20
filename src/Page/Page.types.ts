@@ -11,6 +11,8 @@ export type TPageParams = {
 }
 
 export type TPageData = {
+  id: string | number
+  slug: string
   sections: TSectionData[]
   metadata: TPageMetadata
 }
@@ -21,6 +23,7 @@ export type TPageMetadata = {
 }
 
 export type TPageContext = {
+  pageId: any
   editionEnabled: boolean
   setEditionEnabled: (editionEnabled: boolean) => void
   pageSchema: TPageSchema
