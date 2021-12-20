@@ -13,7 +13,8 @@ import {
   movePageSection,
   removePageSection
 } from './Page.utils'
-import { SectionDefinition } from '~'
+
+import { SectionDefinition } from '../Section/SectionDefinition'
 
 const pageContext = React.createContext<TPageContext>(initPageContextData)
 
@@ -50,7 +51,7 @@ export const PageContextProvider: TPageContextProviderComponent = ({
   }
 
   const addSection = (index: number, sectionDefinition: SectionDefinition) => {
-    addSectionToPage(pageDataRef, index, sectionDefinition.defaultData)
+    addSectionToPage(pageDataRef, index, sectionDefinition.create())
     refresh()
   }
 

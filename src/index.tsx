@@ -13,3 +13,5 @@ export * from './Section/SectionDefinition'
 
 export * from './Connector/Connector.types'
 export * from './Theme/Theme.types'
+
+export * from './Param/ParamDefinition'
