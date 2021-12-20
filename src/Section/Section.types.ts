@@ -23,16 +23,6 @@ export type TSectionContext = {
   setIsFocused: (isFocused: boolean) => void
 }
 
-export type TSectionDefinition = {
-  type: string
-  label: string
-  Component: TSectionInstanceComponent
-  paramsSchema: TSectionDefinitionSchema
-  defaultData: any
-}
-
-export type TSectionDefinitionSchema = any
-
 export type TSectionInstanceComponent<TParams = any, TData = any> = (
   data: TSectionData<TParams, TData>
 ) => JSX.Element

@@ -2,20 +2,25 @@ import React, { useState } from 'react'
 
 import { TSectionData } from '../Section/Section.types'
 import useRefresh from 'src/utils/hooks/useRefresh'
-import { TPageContext, TPageData } from './Page.types'
+import {
+  TPageContext,
+  TPageContextProviderComponent,
+  TPageData
+} from './Page.types'
 import {
   addSectionToPage,
   initPageContextData,
   movePageSection,
   removePageSection
 } from './Page.utils'
+import { SectionDefinition } from '~'
 
 const pageContext = React.createContext<TPageContext>(initPageContextData)
 
 export const usePageContext = () => React.useContext<TPageContext>(pageContext)
 
-export const PageContextProvider = ({
-  pageSchema,
+export const PageContextProvider: TPageContextProviderComponent = ({
+  pageDefinition,
   pageData,
   children,
   pageId
@@ -41,12 +46,11 @@ export const PageContextProvider = ({
   }
 
   const getSectionDefinition = (type: string) => {
-    console.log('look for', type)
-    return pageSchema.sections.find((section) => section.type === type)
+    return pageDefinition.sections.find((section) => section.type === type)
   }
 
-  const addSection = (index: number, sectionData: TSectionData) => {
-    addSectionToPage(pageDataRef, index, sectionData)
+  const addSection = (index: number, sectionDefinition: SectionDefinition) => {
+    addSectionToPage(pageDataRef, index, sectionDefinition.defaultData)
     refresh()
   }
 
@@ -74,7 +78,7 @@ export const PageContextProvider = ({
         moveSection,
         editionEnabled,
         setEditionEnabled,
-        pageSchema,
+        pageDefinition,
         getSectionDefinition,
         getSectionData,
         updateSectionData,

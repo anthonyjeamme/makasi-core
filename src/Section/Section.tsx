@@ -8,7 +8,7 @@ export const Section: TSectionComponent = ({ section, theme, index, data }) => {
   const pageContext = usePageContext()
 
   const sectionDefinition = getSectionDefinition(
-    pageContext.pageSchema,
+    pageContext.pageDefinition,
     section
   )
 
@@ -33,7 +33,7 @@ export const Section: TSectionComponent = ({ section, theme, index, data }) => {
           data={data}
         />
       )}
-      <sectionDefinition.Component {...section} />
+      <sectionDefinition.RenderComponent {...section} />
 
       {theme?.PostSectionComponent && (
         <theme.PostSectionComponent

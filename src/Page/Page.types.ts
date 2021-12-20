@@ -1,4 +1,8 @@
-import { TSectionData, TSectionDefinition } from '../Section/Section.types'
+import React from 'react'
+
+import { SectionDefinition } from '../Section/SectionDefinition'
+import { TSectionData } from '../Section/Section.types'
+import { PageDefinition } from './PageDefinition'
 
 export type TPageSchema = {
   defaultData: TPageData
@@ -10,11 +14,25 @@ export type TPageParams = {
   fixedSections?: boolean
 }
 
+export type TPageContextProviderComponent = React.FC<{
+  pageDefinition: PageDefinition
+  pageData: TPageData
+  pageId: string
+  children: (data: TPageData) => JSX.Element
+}>
+
 export type TPageData = {
-  id: string | number
+  id: string
   slug: string
   sections: TSectionData[]
   metadata: TPageMetadata
+}
+
+export type TDefaultPageData = {
+  sections: TSectionData[]
+  metadata: TPageMetadata
+  id?: string
+  slug?: string
 }
 
 export type TPageMetadata = {
@@ -23,17 +41,17 @@ export type TPageMetadata = {
 }
 
 export type TPageContext = {
-  pageId: any
+  pageId: string
   editionEnabled: boolean
   setEditionEnabled: (editionEnabled: boolean) => void
-  pageSchema: TPageSchema
+  pageDefinition: PageDefinition
   getSectionData: (sectionId: string) => TSectionData
   updateSectionData: (sectionId: string, data: TSectionData) => void
   refresh: () => void
 
-  getSectionDefinition: (type: string) => TSectionDefinition
+  getSectionDefinition: (type: string) => SectionDefinition
 
-  addSection: (index: number, sectionData: TSectionData) => void
+  addSection: (index: number, sectionDefinition: SectionDefinition) => void
   removeSection: (sectionId: string) => void
   moveSection: (sectionId: string, toIndex: number) => void
 

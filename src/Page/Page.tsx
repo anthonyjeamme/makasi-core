@@ -18,7 +18,7 @@ export const page = (pageDefinition: PageDefinition, pageId: string) => () => {
 
   return (
     <PageContextProvider
-      pageSchema={pageDefinition}
+      pageDefinition={pageDefinition}
       pageData={data}
       pageId={pageId}
     >

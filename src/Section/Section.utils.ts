@@ -1,11 +1,11 @@
-import { TSectionContext } from '~'
-import { TPageSchema } from '../Page/Page.types'
+import { TSectionContext } from './Section.types'
+import { PageDefinition } from '../Page/PageDefinition'
 import { TSectionData } from './Section.types'
 
 export const getSectionDefinition = (
-  pageSchema: TPageSchema,
+  pageDefinition: PageDefinition,
   section: TSectionData
-) => pageSchema.sections.find(({ type }) => type === section.type)
+) => pageDefinition.sections.find(({ type }) => type === section.type)
 
 export const initSectionContextData: TSectionContext = {
   getField: () => null,

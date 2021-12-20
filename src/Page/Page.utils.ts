@@ -48,7 +48,7 @@ export const movePageSection = (
 
 export const initPageContextData: TPageContext = {
   editionEnabled: false,
-  pageSchema: null,
+  pageDefinition: null,
   addSection: () => null,
   getSectionData: () => null,
   moveSection: () => null,
