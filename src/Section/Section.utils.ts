@@ -12,5 +12,6 @@ export const initSectionContextData: TSectionContext = {
   updateField: () => null,
   refresh: () => null,
   getParam: () => null,
-  updateParam: () => null
+  updateParam: () => null,
+  setIsFocused: () => null
 }
