@@ -4,7 +4,8 @@ import {
   EditorState,
   convertToRaw,
   convertFromRaw,
-  RawDraftContentState
+  RawDraftContentState,
+  ContentState
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
@@ -48,3 +49,6 @@ export const EditableText = editable<
     </div>
   )
 })
+
+export const editableText = (defaultText = 'lorem ipsum') =>
+  convertToRaw(ContentState.createFromText(defaultText))
