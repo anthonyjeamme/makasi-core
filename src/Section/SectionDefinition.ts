@@ -1,28 +1,35 @@
 import uniqid from 'uniqid'
 
-import { ParamDefinition } from '../Param/ParamDefinition'
+import { TEditableInitializer } from '../Editables/Editable.types'
 
-import { TSectionData, TSectionInstanceComponent } from './Section.types'
+import {
+  TSectionData,
+  TSectionDefinitionPreset,
+  TSectionInstanceComponent
+} from './Section.types'
 
 export class SectionDefinition {
   type: string
   label: string
   RenderComponent: TSectionInstanceComponent
-  paramsSchema: Record<string, ParamDefinition>
+  paramsSchema: Record<string, TEditableInitializer>
   defaultData: any
+  presets: TSectionDefinitionPreset[]
 
   constructor(
     type: string,
     label: string,
     RenderComponent: TSectionInstanceComponent,
     defaultData?: any,
-    paramsSchema?: any
+    paramsSchema?: any,
+    presets?: TSectionDefinitionPreset[]
   ) {
     this.type = type
     this.label = label
     this.RenderComponent = RenderComponent
     this.defaultData = defaultData
     this.paramsSchema = paramsSchema || {}
+    this.presets = presets
   }
 
   generateDefaultParams() {

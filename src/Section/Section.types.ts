@@ -26,3 +26,10 @@ export type TSectionContext = {
 export type TSectionInstanceComponent<TParams = any, TData = any> = (
   data: TSectionData<TParams, TData>
 ) => JSX.Element
+
+export type TSectionDefinitionPreset = {
+  label: string
+  previewImage: any
+  defaultParams: any
+  defaultData: any
+}
