@@ -57,3 +57,11 @@ export type TPageContext = {
 
   toJSON: () => any
 }
+
+export type TPageConfig = {
+  sections?: {
+    disableMove?: boolean
+    disableAdd?: boolean
+    disableRemove?: boolean
+  }
+}
