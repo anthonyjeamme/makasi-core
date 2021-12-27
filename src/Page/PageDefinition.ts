@@ -15,4 +15,8 @@ export class PageDefinition {
     this.defaultData = defaultData
     this.config = config
   }
+
+  create() {
+    return JSON.parse(JSON.stringify(this.defaultData))
+  }
 }
