@@ -37,7 +37,8 @@ export const EditableText = editable<
       className={`EText${props.className ? ` ${props.className}` : ''}`}
     >
       <Editor
-        textAlignment={'center'}
+        // @ts-ignore
+        textAlignment={props.textAlignment || 'center'}
         readOnly={!pageContext.editionEnabled}
         editorState={editorState.editorState}
         onChange={(editorState) => {
