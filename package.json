@@ -19,7 +19,7 @@
     "start": "microbundle-crl watch --css-modules false --no-compress --format modern,cjs",
     "build": "microbundle-crl --css-modules false --no-compress --format modern,cjs",
     "clean": "echo TODO",
-    "prepublishOnly": "echo TODO",
+    "prepublishOnly": "npm run build",
     "postpublish": "echo TODO"
   },
   "author": "",

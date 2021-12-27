@@ -25,4 +25,5 @@ type TMakasiProviderProps = {
 export type TMakasiContext = {
   connector: TConnector
   adminTheme: TMakasiTheme
+  setConnector: (connector: TConnector) => void
 }
