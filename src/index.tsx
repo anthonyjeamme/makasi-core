@@ -1,4 +1,4 @@
-export * from './Makasi/makasi'
+export * from './Makasi/Makasi'
 
 export * from './Page/Page'
 export * from './Page/Page.context'

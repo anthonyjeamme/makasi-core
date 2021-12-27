@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useMakasiContext } from '~'
 
 import { PageContextProvider } from './Page.context'
 import { PageContent } from './PageContent'
@@ -8,8 +9,10 @@ import { PageDefinition } from './PageDefinition'
 export const page = (pageDefinition: PageDefinition, pageId: string) => () => {
   const [data, setData] = useState(null)
 
+  const { connector, adminTheme } = useMakasiContext()
+
   useEffect(() => {
-    window.__makasi.connector.getPage(pageId).then((data) => {
+    connector.getPage(pageId).then((data) => {
       setData(data || pageDefinition.defaultData)
     })
   }, [])
@@ -25,8 +28,8 @@ export const page = (pageDefinition: PageDefinition, pageId: string) => () => {
       {(pageData) => (
         <PageContent
           data={pageData}
-          dataConnector={window.__makasi.connector}
-          theme={window.__makasi.adminTheme}
+          dataConnector={connector}
+          theme={adminTheme}
         />
       )}
     </PageContextProvider>
