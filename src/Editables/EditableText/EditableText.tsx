@@ -38,7 +38,7 @@ export const EditableText = editable<
     >
       <Editor
         // @ts-ignore
-        textAlignment={props.textAlignment || 'center'}
+        textAlignment={props.textAlignment || 'left'}
         readOnly={!pageContext.editionEnabled}
         editorState={editorState.editorState}
         onChange={(editorState) => {
