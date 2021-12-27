@@ -15,6 +15,12 @@ function getEditableElement(element: TEditableElementTag) {
           //@ts-ignore
           onChange(e.target.innerText)
         },
+        onPaste: (e) => {
+          e.preventDefault()
+
+          var text = (e.originalEvent || e).clipboardData.getData('text/plain')
+          document.execCommand('insertHTML', false, text)
+        },
         children: value,
         ...props,
         className: `EElement${

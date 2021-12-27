@@ -1,6 +1,7 @@
 import { SectionDefinition } from '../Section/SectionDefinition'
 import { TDefaultPageData, TPageConfig } from './Page.types'
 
+// TODO add type ?
 export class PageDefinition {
   sections: SectionDefinition[]
   defaultData: TDefaultPageData
