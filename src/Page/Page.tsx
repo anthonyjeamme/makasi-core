@@ -6,32 +6,35 @@ import { PageContent } from './PageContent'
 
 import { PageDefinition } from './PageDefinition'
 
-export const page = (pageDefinition: PageDefinition, pageId: string) => () => {
-  const [data, setData] = useState(null)
+export const page =
+  (pageDefinition: PageDefinition, pageId: string, staticData = null) =>
+  () => {
+    const [data, setData] = useState(staticData)
 
-  const { connector, adminTheme } = useMakasiContext()
+    const { connector, adminTheme } = useMakasiContext()
 
-  useEffect(() => {
-    connector.getPage(pageId).then((data) => {
-      setData(data || pageDefinition.defaultData)
-    })
-  }, [])
+    useEffect(() => {
+      if (!staticData)
+        connector.getPage(pageId).then((data) => {
+          setData(data || pageDefinition.defaultData)
+        })
+    }, [])
 
-  if (data === null) return null
+    if (data === null) return null
 
-  return (
-    <PageContextProvider
-      pageDefinition={pageDefinition}
-      pageData={data}
-      pageId={pageId}
-    >
-      {(pageData) => (
-        <PageContent
-          data={pageData}
-          dataConnector={connector}
-          theme={adminTheme}
-        />
-      )}
-    </PageContextProvider>
-  )
-}
+    return (
+      <PageContextProvider
+        pageDefinition={pageDefinition}
+        pageData={data}
+        pageId={pageId}
+      >
+        {(pageData) => (
+          <PageContent
+            data={pageData}
+            dataConnector={connector}
+            theme={adminTheme}
+          />
+        )}
+      </PageContextProvider>
+    )
+  }
