@@ -7,7 +7,12 @@ import { PageContent } from './PageContent'
 import { PageDefinition } from './PageDefinition'
 
 export const page =
-  (pageDefinition: PageDefinition, pageId: string, staticData = null) =>
+  (
+    pageDefinition: PageDefinition,
+    pageId: string,
+    staticData = null,
+    pageParams = {}
+  ) =>
   () => {
     const [data, setData] = useState(staticData)
 
@@ -27,6 +32,7 @@ export const page =
         pageDefinition={pageDefinition}
         pageData={data}
         pageId={pageId}
+        pageParams={pageParams}
       >
         {(pageData) => (
           <PageContent

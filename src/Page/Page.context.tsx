@@ -24,7 +24,8 @@ export const PageContextProvider: TPageContextProviderComponent = ({
   pageDefinition,
   pageData,
   children,
-  pageId
+  pageId,
+  pageParams
 }) => {
   const pageDataRef = React.useRef<TPageData>(pageData)
   const [editionEnabled, setEditionEnabled] = useState<boolean>(false)
@@ -83,7 +84,8 @@ export const PageContextProvider: TPageContextProviderComponent = ({
         getSectionDefinition,
         getSectionData,
         updateSectionData,
-        toJSON
+        toJSON,
+        pageParams
       }}
     >
       {children(pageDataRef.current)}

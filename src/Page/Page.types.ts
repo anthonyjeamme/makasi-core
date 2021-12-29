@@ -18,6 +18,7 @@ export type TPageContextProviderComponent = React.FC<{
   pageDefinition: PageDefinition
   pageData: TPageData
   pageId: string
+  pageParams: any
   children: (data: TPageData) => JSX.Element
 }>
 
@@ -56,6 +57,7 @@ export type TPageContext = {
   moveSection: (sectionId: string, toIndex: number) => void
 
   toJSON: () => any
+  pageParams: any
 }
 
 export type TPageConfig = {
