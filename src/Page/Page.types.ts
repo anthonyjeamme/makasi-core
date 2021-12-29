@@ -40,6 +40,7 @@ export type TDefaultPageData = {
 export type TPageMetadata = {
   title: string
   description: string
+  shortDescription?: string
 }
 
 export type TPageContext = {
