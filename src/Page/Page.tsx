@@ -14,7 +14,7 @@ export const page =
     const { connector, adminTheme } = useMakasiContext()
 
     useEffect(() => {
-      if (!staticData)
+      if (!staticData && connector)
         connector.getPage(pageId).then((data) => {
           setData(data || pageDefinition.defaultData)
         })
