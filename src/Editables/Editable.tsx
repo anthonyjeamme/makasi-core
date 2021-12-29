@@ -9,9 +9,11 @@ export function editable<TValue = any, TProps = {}>(
   //
   const EditableComponent = ({
     field,
+    onChange,
     ...props
   }: {
     field: string
+    onChange?: (data: any) => void
   } & TProps) => {
     const sectionContext = useSectionContext()
     const data = sectionContext.getField(field)
@@ -21,6 +23,7 @@ export function editable<TValue = any, TProps = {}>(
         value={data}
         onChange={(value) => {
           sectionContext.updateField(field, value)
+          onChange?.(value)
         }}
         {...props}
       />
