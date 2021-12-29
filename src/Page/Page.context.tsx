@@ -5,7 +5,8 @@ import useRefresh from 'src/utils/hooks/useRefresh'
 import {
   TPageContext,
   TPageContextProviderComponent,
-  TPageData
+  TPageData,
+  TPageMetadata
 } from './Page.types'
 import {
   addSectionToPage,
@@ -69,6 +70,13 @@ export const PageContextProvider: TPageContextProviderComponent = ({
     refresh()
   }
 
+  const updateMetadata = (data: Partial<TPageMetadata>) => {
+    pageDataRef.current.metadata = {
+      ...pageDataRef.current.metadata,
+      ...data
+    }
+  }
+
   const toJSON = () => {
     return pageDataRef.current
   }
@@ -87,6 +95,7 @@ export const PageContextProvider: TPageContextProviderComponent = ({
         getSectionDefinition,
         getSectionData,
         updateSectionData,
+        updateMetadata,
         toJSON,
         pageParams
       }}
