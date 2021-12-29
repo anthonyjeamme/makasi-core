@@ -10,7 +10,8 @@ export const Page = ({
   pageDefinition,
   pageId,
   staticData = null,
-  pageParams = {}
+  pageParams = {},
+  defaultEditionEnabled = false
 }) => {
   const [data, setData] = useState(staticData)
 
@@ -31,6 +32,7 @@ export const Page = ({
       pageData={data}
       pageId={pageId}
       pageParams={pageParams}
+      defaultEditionEnabled={defaultEditionEnabled}
     >
       {(pageData) => (
         <PageContent
@@ -48,7 +50,8 @@ export const page =
     pageDefinition: PageDefinition,
     pageId: string,
     staticData = null,
-    pageParams = {}
+    pageParams = {},
+    defaultEditionEnabled = false
   ) =>
   () => {
     return (
@@ -57,6 +60,7 @@ export const page =
         pageId={pageId}
         staticData={staticData}
         pageParams={pageParams}
+        defaultEditionEnabled={defaultEditionEnabled}
       />
     )
   }

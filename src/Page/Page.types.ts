@@ -19,6 +19,7 @@ export type TPageContextProviderComponent = React.FC<{
   pageData: TPageData
   pageId: string
   pageParams: any
+  defaultEditionEnabled?: boolean
   children: (data: TPageData) => JSX.Element
 }>
 
