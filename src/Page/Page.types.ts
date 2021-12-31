@@ -26,6 +26,7 @@ export type TPageContextProviderComponent = React.FC<{
 export type TPageData = {
   id: string
   is_published: boolean
+  is_locked: boolean
   slug: string
   sections: TSectionData[]
   metadata: TPageMetadata
