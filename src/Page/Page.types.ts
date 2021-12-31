@@ -43,6 +43,7 @@ export type TPageMetadata = {
   title: string
   description: string
   shortDescription?: string
+  indexed: boolean
 }
 
 export type TPageContext = {
