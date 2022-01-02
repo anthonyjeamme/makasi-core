@@ -77,6 +77,13 @@ export const PageContextProvider: TPageContextProviderComponent = ({
     }
   }
 
+  const updatePage = (data: Partial<TPageData>) => {
+    pageDataRef.current = {
+      ...pageDataRef.current,
+      ...data
+    }
+  }
+
   const toJSON = () => {
     return pageDataRef.current
   }
@@ -96,6 +103,7 @@ export const PageContextProvider: TPageContextProviderComponent = ({
         getSectionData,
         updateSectionData,
         updateMetadata,
+        updatePage,
         toJSON,
         pageParams
       }}

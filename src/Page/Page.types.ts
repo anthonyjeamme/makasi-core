@@ -64,6 +64,7 @@ export type TPageContext = {
   toJSON: () => any
   pageParams: any
   updateMetadata: (data: Partial<TPageMetadata>) => void
+  updatePage: (data: Partial<TPageData>) => void
 }
 
 export type TPageConfig = {
