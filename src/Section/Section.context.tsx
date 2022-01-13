@@ -24,9 +24,8 @@ export const SectionContextProvider = ({ section, children }) => {
     pageContext.getSectionData(section.id).data[fieldName] = data
   }
 
-  const getParam = (name: string) => {
+  const getParam = (name: string) =>
     pageContext.getSectionData(section.id).params[name]
-  }
 
   const updateParam = (name: string, data: any) => {
     pageContext.getSectionData(section.id).params[name] = data
