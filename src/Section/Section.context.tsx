@@ -38,6 +38,7 @@ export const SectionContextProvider = ({ section, children }) => {
     >
       <sectionContext.Provider
         value={{
+          id: section.id,
           getField,
           updateField,
           getParam,

@@ -15,6 +15,7 @@ export type TSectionComponent = (props: {
 }) => JSX.Element
 
 export type TSectionContext = {
+  id: string
   getField: (fieldName: string) => any
   updateField: (fieldName: string, data: any) => any
   getParam: (fieldName: string) => any
