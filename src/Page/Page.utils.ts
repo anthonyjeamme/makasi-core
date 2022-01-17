@@ -67,5 +67,6 @@ export const initPageContextData: TPageContext = {
   pageId: null,
   pageParams: null,
   updateMetadata: () => null,
-  updatePage: () => null
+  updatePage: () => null,
+  save: () => null
 }
