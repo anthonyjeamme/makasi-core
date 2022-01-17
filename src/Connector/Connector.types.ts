@@ -16,6 +16,7 @@ export type TConnector = {
 
   //
   addResourceToPage: (resourceId: string, pageId: string) => Promise<void>
+  removePageResource: (resourceId: string, pageId: string) => Promise<void>
 }
 
 export type TConnectorFactory = (id: string) => TConnector

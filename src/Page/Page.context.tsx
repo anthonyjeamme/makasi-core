@@ -107,8 +107,22 @@ export const PageContextProvider: TPageContextProviderComponent = ({
     )
   }
 
-  const addResource = (resource: TResource) => {
+  const addResource = async (resource: TResource) => {
+    if (!makasiContext.connector) {
+      throw 'No connector configured'
+    }
+
+    await makasiContext.connector.addResourceToPage(resource.id, pageId)
+
     pageDataRef.current.resources.push(resource)
+  }
+
+  const removeResource = async (resourceId: string) => {
+    await makasiContext.connector.removePageResource(resourceId, pageId)
+
+    pageDataRef.current.resources = pageDataRef.current.resources.filter(
+      (resource) => resource.id !== resourceId
+    )
   }
 
   const toJSON = () => {
@@ -135,7 +149,8 @@ export const PageContextProvider: TPageContextProviderComponent = ({
         pageParams,
         save,
         getResource,
-        addResource
+        addResource,
+        removeResource
       }}
     >
       {children(pageDataRef.current)}
