@@ -38,6 +38,7 @@ export const PageContextProvider: TPageContextProviderComponent = ({
     defaultEditionEnabled
   )
   const [refresh] = useRefresh()
+  const [resources, setResources] = useState(pageData.resources)
 
   const getSectionData = (sectionId: string) =>
     pageDataRef.current.sections.find((section) => section.id === sectionId)
@@ -100,11 +101,7 @@ export const PageContextProvider: TPageContextProviderComponent = ({
   }
 
   const getResource = (resourceId: string) => {
-    return (
-      pageDataRef.current.resources.find(
-        (resource) => resource.id === resourceId
-      ) || null
-    )
+    return resources.find((resource) => resource.id === resourceId) || null
   }
 
   const addResource = async (resource: TResource) => {
@@ -114,15 +111,13 @@ export const PageContextProvider: TPageContextProviderComponent = ({
 
     await makasiContext.connector.addResourceToPage(resource.id, pageId)
 
-    pageDataRef.current.resources.push(resource)
+    setResources([...resources, resource])
   }
 
   const removeResource = async (resourceId: string) => {
     await makasiContext.connector.removePageResource(resourceId, pageId)
 
-    pageDataRef.current.resources = pageDataRef.current.resources.filter(
-      (resource) => resource.id !== resourceId
-    )
+    setResources(resources.filter((resource) => resource.id !== resourceId))
   }
 
   const toJSON = () => {
