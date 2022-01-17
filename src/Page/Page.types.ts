@@ -3,6 +3,7 @@ import React from 'react'
 import { SectionDefinition } from '../Section/SectionDefinition'
 import { TSectionData } from '../Section/Section.types'
 import { PageDefinition } from './PageDefinition'
+import { TResource } from 'src/Resource/Resource.types'
 
 export type TPageSchema = {
   defaultData: TPageData
@@ -30,6 +31,7 @@ export type TPageData = {
   slug: string
   sections: TSectionData[]
   metadata: TPageMetadata
+  resources: TResource[]
 }
 
 export type TDefaultPageData = {
@@ -65,6 +67,7 @@ export type TPageContext = {
   pageParams: any
   updateMetadata: (data: Partial<TPageMetadata>) => void
   updatePage: (data: Partial<TPageData>) => void
+  save: () => Promise<TPageData>
 }
 
 export type TPageConfig = {

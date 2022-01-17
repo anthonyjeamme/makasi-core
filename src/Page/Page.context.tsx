@@ -10,12 +10,14 @@ import {
 } from './Page.types'
 import {
   addSectionToPage,
+  getPageDataForSave,
   initPageContextData,
   movePageSection,
   removePageSection
 } from './Page.utils'
 
 import { SectionDefinition } from '../Section/SectionDefinition'
+import { useMakasiContext } from '~'
 
 const pageContext = React.createContext<TPageContext>(initPageContextData)
 
@@ -29,6 +31,7 @@ export const PageContextProvider: TPageContextProviderComponent = ({
   pageParams,
   defaultEditionEnabled = false
 }) => {
+  const makasiContext = useMakasiContext()
   const pageDataRef = React.useRef<TPageData>(pageData)
   const [editionEnabled, setEditionEnabled] = useState<boolean>(
     defaultEditionEnabled
@@ -84,6 +87,17 @@ export const PageContextProvider: TPageContextProviderComponent = ({
     }
   }
 
+  const save = async () => {
+    if (!makasiContext.connector) {
+      throw 'No connector configured'
+    }
+
+    return makasiContext.connector.updatePage(
+      pageId,
+      getPageDataForSave(pageDataRef.current)
+    )
+  }
+
   const toJSON = () => {
     return pageDataRef.current
   }
@@ -105,7 +119,8 @@ export const PageContextProvider: TPageContextProviderComponent = ({
         updateMetadata,
         updatePage,
         toJSON,
-        pageParams
+        pageParams,
+        save
       }}
     >
       {children(pageDataRef.current)}

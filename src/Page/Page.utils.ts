@@ -46,6 +46,12 @@ export const movePageSection = (
   ]
 }
 
+export const getPageDataForSave = (pageData: TPageData) => {
+  const { resources, ...data } = pageData
+
+  return data
+}
+
 export const initPageContextData: TPageContext = {
   editionEnabled: false,
   pageDefinition: null,
