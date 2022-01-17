@@ -58,5 +58,8 @@ export const initPageContextData: TPageContext = {
   setEditionEnabled: () => null,
   toJSON: () => ({}),
   getSectionDefinition: () => null,
-  pageId: null
+  pageId: null,
+  pageParams: null,
+  updateMetadata: () => null,
+  updatePage: () => null
 }

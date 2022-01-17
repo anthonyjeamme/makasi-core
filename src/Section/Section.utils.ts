@@ -8,6 +8,7 @@ export const getSectionDefinition = (
 ) => pageDefinition.sections.find(({ type }) => type === section.type)
 
 export const initSectionContextData: TSectionContext = {
+  id: null,
   getField: () => null,
   updateField: () => null,
   refresh: () => null,
