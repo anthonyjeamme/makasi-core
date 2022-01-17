@@ -68,6 +68,9 @@ export type TPageContext = {
   updateMetadata: (data: Partial<TPageMetadata>) => void
   updatePage: (data: Partial<TPageData>) => void
   save: () => Promise<TPageData>
+
+  getResource: (resourceId: string) => TResource
+  addResource: (resource: TResource) => void
 }
 
 export type TPageConfig = {

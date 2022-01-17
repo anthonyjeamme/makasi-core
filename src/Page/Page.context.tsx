@@ -18,6 +18,7 @@ import {
 
 import { SectionDefinition } from '../Section/SectionDefinition'
 import { useMakasiContext } from '~'
+import { TResource } from 'src/Resource/Resource.types'
 
 const pageContext = React.createContext<TPageContext>(initPageContextData)
 
@@ -98,6 +99,18 @@ export const PageContextProvider: TPageContextProviderComponent = ({
     )
   }
 
+  const getResource = (resourceId: string) => {
+    return (
+      pageDataRef.current.resources.find(
+        (resource) => resource.id === resourceId
+      ) || null
+    )
+  }
+
+  const addResource = (resource: TResource) => {
+    pageDataRef.current.resources.push(resource)
+  }
+
   const toJSON = () => {
     return pageDataRef.current
   }
@@ -120,7 +133,9 @@ export const PageContextProvider: TPageContextProviderComponent = ({
         updatePage,
         toJSON,
         pageParams,
-        save
+        save,
+        getResource,
+        addResource
       }}
     >
       {children(pageDataRef.current)}
