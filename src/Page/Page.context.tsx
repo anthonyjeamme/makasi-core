@@ -104,6 +104,10 @@ export const PageContextProvider: TPageContextProviderComponent = ({
     return resources.find((resource) => resource.id === resourceId) || null
   }
 
+  const getResources = () => {
+    return resources
+  }
+
   const addResource = async (resource: TResource) => {
     if (!makasiContext.connector) {
       throw 'No connector configured'
@@ -144,6 +148,7 @@ export const PageContextProvider: TPageContextProviderComponent = ({
         pageParams,
         save,
         getResource,
+        getResources,
         addResource,
         removeResource
       }}

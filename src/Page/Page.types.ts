@@ -70,6 +70,7 @@ export type TPageContext = {
   save: () => Promise<TPageData>
 
   getResource: (resourceId: string) => TResource
+  getResources: () => TResource[]
   addResource: (resource: TResource) => Promise<void>
   removeResource: (resourceId: string) => Promise<void>
 }
